@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "image-downloader": "^3.5.0",
+    "puppeteer": "^3.0.4"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "puppeteer": "^3.0.4"
-  }
+  "license": "ISC"
 }
