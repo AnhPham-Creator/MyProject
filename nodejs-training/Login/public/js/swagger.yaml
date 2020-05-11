@@ -1,0 +1,174 @@
+swagger: "2.0"
+info:
+  description: "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters."
+  version: "1.0.0"
+  title: "Swagger Pizza store"
+  contact:
+    email: "anhplt12@gmail.com"
+host: "localhost:3000"
+basePath: ""
+tags:
+- name: "Products"
+  description: "Access to listproduct and order"
+- name: "user"
+  description: "Operations about user"
+  externalDocs:
+    description: "Find out more about our store"
+    url: "http://swagger.io"
+schemes:
+- "http"
+paths:
+  /login:          
+    post:
+      tags:
+      - "user"
+      summary: "Logs user into the system"
+      description: ""
+      operationId: "loginUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "info login"
+        required: true
+        schema:
+          properties:
+            email: "string"
+            password: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            properties:
+              token: 
+                type: "string"
+              user:
+                $ref: "#/definitions/User"
+        400:
+          description: "Invalid username/password supplied"
+          
+  /list-product:
+    get:
+      tags:
+      - "Products"
+      summary: "redirect to screen list product"
+      description: "show list product"
+      operationId: ""
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Products"
+            
+  /makeOrder:
+    post:
+      tags: 
+      - "Products"
+      summary: "make order"
+      description: "make order"
+      operationId: ""
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "make order"
+        required: true
+        schema:
+          $ref: "#/definitions/Cart"
+      responses:
+        200:
+          description: "successful operation"
+        401:
+          description: "Unauthorized"
+  /authorize:
+    get:
+      tags:
+      - "user"
+      summary: "authorization schemes"
+      description: "authorization schemes"
+      operationId: ""
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "token"
+        in: "query"
+        description: "The token for authorize"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "authorize success"
+        401:
+          description: "Unauthorized"
+
+# securityDefinitions:
+#   BasicAuth:
+#     type: basic
+#   ApiKeyAuth:
+#     type: apiKey
+#     in: header
+#     name: X-API-Key
+#   OAuth2:
+#     type: oauth2
+#     flow: accessCode
+#     authorizationUrl: https://example.com/oauth/authorize
+#     tokenUrl: https://example.com/oauth/token
+#     scopes:
+#       read: Grants read access
+#       write: Grants write access
+#       admin: Grants read and write access to administrative information
+definitions:
+  User:
+    type: "object"
+    properties:
+      firstname:
+        type: "string"
+      lastname:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      fullname:
+        type: "string"
+    xml:
+      name: "User"
+      
+  Products:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      price:
+        type: "number"
+      quantity:
+        type: "number"
+    xml:
+      name: "Products"
+  Cart:
+    type: "array"
+    items:
+      type: "object"
+      properties:
+        userid:
+          type: "string"
+        productid:
+          type: "string"
+        price:
+          type: "number"
+        quantity:
+          type: "number"
+    xml:
+      name: "Cart"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
