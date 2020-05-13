@@ -3,12 +3,26 @@
    <head>
       <meta charset = "UTF-8">
       <title>Hello World!</title>
+      
+      <link rel="stylesheet" type="text/css" href="./stype.css">
+      <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+      <script src="./javascript.js" charset="utf-8"></script>
+      <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
    </head>
    
    <body>
-      <h1>Hello World!</h1>
-      We are using node <script>document.write(process.versions.node)</script>,
-      Chrome <script>document.write(process.versions.chrome)</script>,
-      and Electron <script>document.write(process.versions.electron)</script>.
+      <div class="container .container-fluid">
+         <div class="hearder">
+            <button style='font-size:16px' id="add-note">New <i class='far fa-file'></i></button>
+            <button style='font-size:10px' id="save-note">Save <i class="material-icons">save</i></button>
+            <input id="myTextarea" type="text" value="type here ...">
+            <input type="hidden" id="noteId" value="">
+         </div>
+
+         <div id="content">
+
+         </div>
+      </div>
    </body>
 </html>
