@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Table, Button, Modal, Form } from 'react-bootstrap';
+import { Table, Button, Modal, Form, Row, Col } from 'react-bootstrap';
 import './style.css';
 import User from '../class/user';
+import DateTimePicker from '../components/datimepicker';
 
 function Content(props: any) {
         const [show, setShow] = useState(false)
@@ -20,15 +21,14 @@ function Content(props: any) {
         return (
             <div className="container">
                 <div className="table-title" >
-                    <div className="row">
-                        <div>
-                            <h2><b>List Users</b></h2>
-                        </div>
-                        <div>
-                            <Button variant="primary" onClick={() => setShow(true)}>
+                    
+                    <Row>
+                        <Col sm={8}><h2><b>List Users</b></h2></Col>
+                        <Col sm={4}>
+                        <Button className="bt-addnew" variant="primary" onClick={() => setShow(true)}>
                                 Add New Employee</Button>
-                        </div>
-                    </div>
+                        </Col>
+                    </Row>
                 </div>
                 <div className="table-list">
                     <Table striped bordered hover>
@@ -59,14 +59,15 @@ function Content(props: any) {
                         </Modal.Header>
                         <Modal.Body>
                             <Form>
+                                <Form.Group controlId="formGroupName">
+                                    <Form.Label>Name</Form.Label>
+                                    <Form.Control type="text" placeholder="Enter Name" />
+                                </Form.Group>
                                 <Form.Group controlId="formGroupEmail">
                                     <Form.Label>Email address</Form.Label>
                                     <Form.Control type="email" placeholder="Enter email" />
                                 </Form.Group>
-                                <Form.Group controlId="formGroupPassword">
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Password" />
-                                </Form.Group>
+                                {DateTimePicker}
                             </Form>
                         </Modal.Body>
                         <Modal.Footer>
